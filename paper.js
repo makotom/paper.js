@@ -39,7 +39,7 @@
 				}
 
 				refHash["#" + e[i].id] = secLabel;
-				f.appendChild(document.createTextNode("#" + e[i].id.replace(/\./g, "\\.") + " > *:first-child:before{ content: \"" + secLabel + " \"; }\n"));
+				f.appendChild(document.createTextNode("#" + e[i].id + " > *:first-child:before{ content: \"" + secLabel + " \"; }\n"));
 			}
 		})();
 
