@@ -105,14 +105,14 @@
 			eqLabel = "", i = 0;
 
 			for(i = 0; i < e.length; i += 1){
-				eqLabel = i.toString();
+				eqLabel = (i + 1).toString();
 
 				if(e[i].id === ""){
 					e[i].id = "eq-" + eqLabel;
 				}
 
 				refHash["#" + e[i].id] = "(" + eqLabel + ")";
-				e.appendChild(document.createTextNode("#" + e[i].id + ":after{ float: right; line-height: " + getComputedStyle(e[i].parentNode, null).height + "; content: \" (" + eqLabel + ")\"; }\n"));
+				f.appendChild(document.createTextNode("#" + e[i].id + ":after{ float: right; line-height: " + getComputedStyle(e[i].parentNode, null).height + "; content: \" (" + eqLabel + ")\"; }\n"));
 			}
 		})();
 
