@@ -76,7 +76,32 @@
 		})();
 
 		(function(){
-			var e = document.getElementsByClassName("eqmark"),
+			var e = document.getElementsByClassName("latex"),
+			eq = "", img = null,
+			eqScaler = function(e){
+				e.target.height = e.target.height * 0.4;
+			},
+			i = 0;
+
+			for(i = 0; i < e.length; i += 1){
+				eq = e[i].textContent;
+
+				while(e[i].firstChild){
+					e[i].removeChild(e[i].firstChild);
+				}
+
+				img = document.createElement("img");
+				img.src = "http://latex.codecogs.com/png.latex?" + encodeURI("\\dpi{300} " + eq);
+				img.setAttribute("alt", eq);
+
+				img.addEventListener("load", eqScaler);
+
+				e[i].appendChild(img);
+			}
+		})();
+
+		(function(){
+			var e = document.getElementsByClassName("eq-mark"),
 			eqLabel = "", i = 0;
 
 			for(i = 0; i < e.length; i += 1){
@@ -128,14 +153,16 @@
 		var f = document.createElement("style");
 
 		f.appendChild(document.createTextNode("\n" +
-			"body { width: 800px; margin-left: auto; margin-right: auto; }\n" +
+			"body { width: 800px; margin-left: auto; margin-right: auto; line-height: 1.5em; }\n" +
 			"h1, #author { text-align: center; }\n" +
 			"h1, h2, h3, h4, h5, h6, #author { font-weight: bold; }\n" +
 			"section p { text-indent: 1em; }\n" +
 			"ol, ul { margin: 0; }\n" +
+			".latex > img { margin-top: 0.25em; margin-bottom: 0.25em; vertical-align: middle; }\n" +
 			"figure, .equation-skip, [id^=\"equation-\"] { text-align: center; }\n" +
 			"table { margin: auto; border: solid black; border-collapse: collapse; }\n" +
 			"th, td { border: solid black; }\n" +
+			"div.eq { text-align: center; }\n" +
 			"a.sref { color: inherit; text-decoration: inherit; }\n"
 		));
 
