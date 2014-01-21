@@ -91,7 +91,7 @@
 				}
 
 				img = document.createElement("img");
-				img.src = "http://latex.codecogs.com/png.latex?" + encodeURI("\\dpi{300} " + eq);
+				img.src = "http://latex.codecogs.com/png.latex?" + encodeURIComponent("\\dpi{300} " + eq);
 				img.setAttribute("alt", eq);
 
 				img.addEventListener("load", eqScaler);
