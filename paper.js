@@ -157,7 +157,8 @@
 		var f = document.createElement("style");
 
 		f.appendChild(document.createTextNode("\n" +
-			"body { width: 800px; margin-left: auto; margin-right: auto; line-height: 1.5em; }\n" +
+			"body { width: 800px; margin-left: auto; margin-right: auto; }\n" +
+			"body * { line-height: 1.5em; }\n" +
 			"h1, #author { text-align: center; }\n" +
 			"h1, h2, h3, h4, h5, h6, #author { font-weight: bold; }\n" +
 			"section p { text-indent: 1em; }\n" +
