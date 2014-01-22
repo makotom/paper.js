@@ -60,44 +60,32 @@
 		})();
 
 		(function(){
-			var e = document.getElementsByTagName("table"),
-			tblLabel = "", i = 0;
-
-			for(i = 0; i < e.length; i += 1){
-				tblLabel = (i + 1).toString();
-
-				if(e[i].id === ""){
-					e[i].id = "tbl-" + tblLabel;
-				}
-
-				refHash["#" + e[i].id] = tblLabel;
-				f.appendChild(document.createTextNode("#" + e[i].id + " > caption:before{ content: \"Table " + tblLabel + ": \"; }\n"));
-			}
-		})();
-
-		(function(){
 			var e = document.getElementsByClassName("latex"),
-			eq = "", img = null,
-			eqScaler = function(e){
-				e.target.height = e.target.height * 0.4;
+
+			closure = {
+				inline : {
+					open : "\\(",
+					close : "\\)"
+				},
+				block : {
+					open : "\\[",
+					close : "\\]"
+				}
 			},
+			display = "",
+
+			script = document.createElement("script"),
+
 			i = 0;
 
 			for(i = 0; i < e.length; i += 1){
-				eq = e[i].textContent;
-
-				while(e[i].firstChild){
-					e[i].removeChild(e[i].firstChild);
-				}
-
-				img = document.createElement("img");
-				img.src = "http://latex.codecogs.com/png.latex?" + encodeURIComponent("\\dpi{300} " + eq);
-				img.setAttribute("alt", eq);
-
-				img.addEventListener("load", eqScaler);
-
-				e[i].appendChild(img);
+				display = getComputedStyle(e[i], null).display;
+				e[i].insertBefore(document.createTextNode(closure[display].open), e[i].firstChild);
+				e[i].appendChild(document.createTextNode(closure[display].close));
 			}
+
+			script.src = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+			document.documentElement.appendChild(script);
 		})();
 
 		(function(){
@@ -113,6 +101,22 @@
 
 				refHash["#" + e[i].id] = "(" + eqLabel + ")";
 				f.appendChild(document.createTextNode("#" + e[i].id + ":after{ float: right; line-height: " + getComputedStyle(e[i].parentNode, null).height + "; content: \" (" + eqLabel + ")\"; }\n"));
+			}
+		})();
+
+		(function(){
+			var e = document.getElementsByTagName("table"),
+			tblLabel = "", i = 0;
+
+			for(i = 0; i < e.length; i += 1){
+				tblLabel = (i + 1).toString();
+
+				if(e[i].id === ""){
+					e[i].id = "tbl-" + tblLabel;
+				}
+
+				refHash["#" + e[i].id] = tblLabel;
+				f.appendChild(document.createTextNode("#" + e[i].id + " > caption:before{ content: \"Table " + tblLabel + ": \"; }\n"));
 			}
 		})();
 
@@ -159,10 +163,9 @@
 			"section p { text-indent: 1em; }\n" +
 			"ol, ul { margin: 0; }\n" +
 			".latex > img { margin-top: 0.25em; margin-bottom: 0.25em; vertical-align: middle; }\n" +
-			"figure, .equation-skip, [id^=\"equation-\"] { text-align: center; }\n" +
+			"figure { text-align: center; }\n" +
 			"table { margin: auto; border: solid black; border-collapse: collapse; }\n" +
 			"th, td { border: solid black; }\n" +
-			"div.eq { text-align: center; }\n" +
 			"a.sref { color: inherit; text-decoration: inherit; }\n"
 		));
 
