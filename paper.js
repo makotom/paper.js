@@ -162,7 +162,6 @@
 			"h1, h2, h3, h4, h5, h6, #author { font-weight: bold; }\n" +
 			"section p { text-indent: 1em; }\n" +
 			"ol, ul { margin: 0; }\n" +
-			".latex > img { margin-top: 0.25em; margin-bottom: 0.25em; vertical-align: middle; }\n" +
 			"figure { text-align: center; }\n" +
 			"table { margin: auto; border: solid black; border-collapse: collapse; }\n" +
 			"th, td { border: solid black; }\n" +
