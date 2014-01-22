@@ -80,8 +80,11 @@
 
 			for(i = 0; i < e.length; i += 1){
 				display = getComputedStyle(e[i], null).display;
-				e[i].insertBefore(document.createTextNode(closure[display].open), e[i].firstChild);
-				e[i].appendChild(document.createTextNode(closure[display].close));
+
+				if(closure[display] !== null){
+					e[i].insertBefore(document.createTextNode(closure[display].open), e[i].firstChild);
+					e[i].appendChild(document.createTextNode(closure[display].close));
+				}
 			}
 
 			script.src = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
