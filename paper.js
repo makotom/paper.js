@@ -39,7 +39,8 @@
 				}
 
 				refHash["#" + e[i].id] = secLabel;
-				f.appendChild(document.createTextNode("#" + e[i].id + " > *:first-child:before{ content: \"" + secLabel + " \"; }\n"));
+
+				f.appendChild(document.createTextNode("#" + e[i].id + " > *:first-child:before { content: \"" + secLabel + " \"; }\n"));
 			}
 		})();
 
@@ -55,7 +56,29 @@
 				}
 
 				refHash["#" + e[i].id] = figLabel;
-				f.appendChild(document.createTextNode("#" + e[i].id + " > figcaption:before{ content: \"Figure " + figLabel + ": \"; }\n"));
+
+				f.appendChild(document.createTextNode("#" + e[i].id + " > figcaption:before { content: \"Figure " + figLabel + ": \"; }\n"));
+			}
+		})();
+
+		(function(){
+			var e = document.getElementsByClassName("eq-mark"),
+			eqLabel = "", i = 0;
+
+			for(i = 0; i < e.length; i += 1){
+				eqLabel = (i + 1).toString();
+
+				if(e[i].id === ""){
+					e[i].id = "eq-" + eqLabel;
+				}
+
+				refHash["#" + e[i].id] = "(" + eqLabel + ")";
+
+				if(/(^| )latex( |$)/.test(e[i].className)){
+					e[i].appendChild(document.createTextNode(" \\tag{" + eqLabel + "}"));
+				}else{
+					f.appendChild(document.createTextNode("#" + e[i].id + ":after { float: right; line-height: " + getComputedStyle(e[i], null).height + "; content: \" (" + eqLabel + ")\"; }\n"));
+				}
 			}
 		})();
 
@@ -80,31 +103,14 @@
 
 			for(i = 0; i < e.length; i += 1){
 				display = getComputedStyle(e[i], null).display;
-
-				if(closure[display] !== null){
+				if(closure[display] !== undefined){
 					e[i].insertBefore(document.createTextNode(closure[display].open), e[i].firstChild);
 					e[i].appendChild(document.createTextNode(closure[display].close));
 				}
 			}
 
-			script.src = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+			script.src = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML";
 			document.documentElement.appendChild(script);
-		})();
-
-		(function(){
-			var e = document.getElementsByClassName("eq-mark"),
-			eqLabel = "", i = 0;
-
-			for(i = 0; i < e.length; i += 1){
-				eqLabel = (i + 1).toString();
-
-				if(e[i].id === ""){
-					e[i].id = "eq-" + eqLabel;
-				}
-
-				refHash["#" + e[i].id] = "(" + eqLabel + ")";
-				f.appendChild(document.createTextNode("#" + e[i].id + ":after{ float: right; line-height: " + getComputedStyle(e[i].parentNode, null).height + "; content: \" (" + eqLabel + ")\"; }\n"));
-			}
 		})();
 
 		(function(){
@@ -119,7 +125,8 @@
 				}
 
 				refHash["#" + e[i].id] = tblLabel;
-				f.appendChild(document.createTextNode("#" + e[i].id + " > caption:before{ content: \"Table " + tblLabel + ": \"; }\n"));
+
+				f.appendChild(document.createTextNode("#" + e[i].id + " > caption:before { content: \"Table " + tblLabel + ": \"; }\n"));
 			}
 		})();
 
