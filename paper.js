@@ -174,6 +174,7 @@
 			"section p { text-indent: 1em; }\n" +
 			"ol, ul { margin: 0; }\n" +
 			"figure { text-align: center; }\n" +
+			"figure * { max-width: 90%; }\n" +
 			"table { margin: auto; border: solid black; border-collapse: collapse; }\n" +
 			"th, td { border: solid black; }\n" +
 			"a.sref { color: inherit; text-decoration: inherit; }\n"
