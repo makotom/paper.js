@@ -177,6 +177,7 @@
 			"figure * { max-width: 90%; }\n" +
 			"table { margin: auto; border: solid black; border-collapse: collapse; }\n" +
 			"th, td { border: solid black; }\n" +
+			"@media print { figure, table { page-break-inside: avoid; } }\n" +
 			"a.sref { color: inherit; text-decoration: inherit; }\n"
 		));
 
