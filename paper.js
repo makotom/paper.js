@@ -171,10 +171,11 @@
 			"body * { line-height: 1.5em; }\n" +
 			"h1, #author { text-align: center; }\n" +
 			"h1, h2, h3, h4, h5, h6, #author { font-weight: bold; }\n" +
-			"section p { text-indent: 1em; }\n" +
+			"p:not(.p-continuing):not(#author) { text-indent: 1em; }\n" +
 			"ol, ul { margin: 0; }\n" +
 			"figure { text-align: center; }\n" +
 			"figure * { max-width: 90%; }\n" +
+			"figcaption { display: block; margin: auto; }\n" +
 			"table { margin: auto; border: solid black; border-collapse: collapse; }\n" +
 			"th, td { border: solid black; }\n" +
 			"th { text-align: center; }\n" +
