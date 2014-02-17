@@ -170,7 +170,7 @@
 			"body { width: 800px; margin-left: auto; margin-right: auto; text-align: justify; }\n" +
 			"body * { line-height: 1.5em; }\n" +
 			"h1, #author { text-align: center; }\n" +
-			"h1, h2, h3, h4, h5, h6, #author { font-weight: bold; }\n" +
+			"h1, h2, h3, h4, h5, h6, #author { font-weight: 900; }\n" +
 			"p:not(.p-continuing):not(#author) { text-indent: 1em; }\n" +
 			"ol, ul { margin: 0; }\n" +
 			"figure { text-align: center; }\n" +
